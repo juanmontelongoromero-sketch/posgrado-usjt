@@ -1,0 +1,6 @@
+# Ignorar datos sensibles o locales que NUNCA deben subirse a GitHub público
+*.xlsx
+*.xls
+*.csv
+.DS_Store
+Thumbs.db

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Páginas de Google Sites · Posgrado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/posgrado.css">
+  <style>
+    body { padding: 0; }
+    .sites-topbar {
+      background: #2c2e30;
+      color: #ffffff;
+      border-bottom: 4px solid #bc955c;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .sites-menu {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .sites-link {
+      padding: 8px 14px;
+      border-radius: 4px;
+      border: 1px solid #54565a;
+      background: transparent;
+      color: #ffffff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .sites-link.active {
+      background: #ab0033;
+      border-color: #ab0033;
+    }
+    .sites-link.admin-btn.active {
+      background: #bc955c;
+      border-color: #bc955c;
+      color: #1c1d1f;
+    }
+    iframe.sites-frame {
+      width: 100%;
+      height: calc(100vh - 66px);
+      border: 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="sites-topbar">
+    <div>
+      <strong style="color:#ddc9a3;">VISTA PREVIA DE TU GOOGLE SITE MODULAR</strong>
+      <span style="font-size:12px;color:#d1d5db;display:block;">Cada botón simula una página distinta en Google Sites cargada desde GitHub Pages (nota cómo se conserva tu sesión al cambiar de página).</span>
+    </div>
+    <nav class="sites-menu">
+      <button class="sites-link active" onclick="cargarPagina('./sesiones.html', this)">Pág 1: Sesiones y Comunicados</button>
+      <button class="sites-link" onclick="cargarPagina('./materias.html', this)">Pág 2: Materias y Trabajos</button>
+      <button class="sites-link" onclick="cargarPagina('./calificaciones.html', this)">Pág 3: Calificaciones</button>
+      <button class="sites-link" onclick="cargarPagina('./pagos.html', this)">Pág 4: Pagos y Vouchers</button>
+      <button class="sites-link admin-btn" onclick="cargarPagina('./admin.html', this)">Pág 5: Perfil Administrador</button>
+    </nav>
+  </header>
+
+  <iframe id="visor-sites" class="sites-frame" src="./sesiones.html" title="Visor modular"></iframe>
+
+  <script>
+    function cargarPagina(ruta, btn) {
+      document.querySelectorAll('.sites-link').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('visor-sites').src = ruta;
+    }
+  </script>
+</body>
+</html>
